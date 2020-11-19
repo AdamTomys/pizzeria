@@ -1,6 +1,6 @@
 .cart {
   position: absolute;
-  width: 270px;
+  width: 300px; // CODE CHANGED
   right: 0;
   top: $base-size;
   padding: ($base-size) ($base-size * 1.5);
@@ -11,25 +11,16 @@
   box-shadow: 0 0 $base-size rgba(0, 0, 0, 0.2);
   z-index: 9999;
 
-  &__content {
-    @include accordion-closed();
-
-    opacity: 0;
-    animation: flipdown 0.5s ease both;
-    color: $color-dark;
-  }
-
   &.active {
     .cart__content {
       @include accordion-open();
-
       padding: ($base-size * 1.5) 0 0 0;
     }
+
   }
 
   &__summary {
     @include flex(row, center, space-between);
-
     text-transform: uppercase;
     cursor: pointer;
   }
@@ -52,15 +43,11 @@
     color: $color-dark;
   }
 
-  &__order-confirmation {
-    border-top: 1px solid lighten($color-dark, 70%);
-    padding: $base-size 0 0 0;
-
-    input,
-    button {
-      width: 100%;
-      margin-bottom: ($base-size / 2);
-    }
+  &__content {
+    @include accordion-closed();
+    opacity: 0;
+    animation: flipdown 0.5s ease both;
+    color: $color-dark;
   }
 
   &__order-summary {
@@ -70,7 +57,6 @@
 
     .widget-amount {
       @include flex(column-reverse, center, space-between);
-
       margin: 0 $base-size 0 0;
 
       input {
@@ -82,16 +68,51 @@
       &:hover .btn-quantity--lt {
         opacity: 1;
       }
+
     }
+
   }
 
-  &__product-name {
-    width: 150px;
+  &__product { // CODE CHANGED
+    width: 170px; // CODE CHANGED
   }
+
+  // CODE ADDED START
+
+  &__product-header {
+    @include flex(row, center, space-between);
+  }
+
+  &__product-details {
+    li {
+      display: block;
+      margin: 0 0 ($base-size / 4) 0;
+      font-size: 10px;
+      color: lighten($color-dark, 40%);
+      text-transform: lowercase;
+      font-style: italic;
+      line-height: 1.3;
+      letter-spacing: 0.5px;
+    }
+
+  }
+
+  &__product-details-label {
+    position: relative;
+    padding: 0 ($base-size / 2) 0 0;
+    font-weight: 700;
+
+    &::after {
+      position: absolute;
+      content: ':';
+    }
+
+  }
+
+  // CODE ADDED END
 
   &__action-buttons {
     @include flex(row, center, space-between);
-
     font-size: 0;
 
     i {
@@ -108,11 +129,13 @@
       &:hover {
         color: lighten($color-main, 3%);
       }
+
     }
+
   }
 
   &__order-price {
-    margin: 0;
+    margin: $base-size 0 0 0; // CODE CHANGED
     padding: $base-size 0;
     list-style-type: none;
     border-top: 1px solid lighten($color-dark, 70%);
@@ -121,4 +144,16 @@
       @include flex(row, center, space-between);
     }
   }
+
+  &__order-confirmation {
+    border-top: 1px solid lighten($color-dark, 70%);
+    padding: $base-size 0 0 0;
+
+    input, button {
+      width: 100%;
+      margin-bottom: ($base-size / 2);
+    }
+
+  }
+
 }

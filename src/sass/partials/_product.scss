@@ -11,7 +11,6 @@
 
   &__header {
     @include flex(row, center, space-between);
-
     margin-bottom: ($base-size * 2);
     font-family: $font-header;
     font-size: 22px;
@@ -45,7 +44,6 @@
   &__wrapper {
     @include flex(row, center, space-between);
     @include accordion-closed();
-
     animation: flipdown 0.5s ease both;
   }
 
@@ -88,7 +86,6 @@
 
     > img {
       @include center();
-
       height: auto;
       opacity: 0;
       transition: opacity 500ms;
@@ -96,7 +93,9 @@
       &.active {
         opacity: 1;
       }
+
     }
+
   }
 
   &.active {
@@ -104,15 +103,16 @@
       @include accordion-open();
     }
 
-    .product__order,
-    .product__images {
+    .product__order, .product__images {
       opacity: 1;
     }
 
     .product__icon {
       transform: rotate(180deg);
     }
+
   }
+
 }
 
 .widget-amount {
@@ -123,4 +123,5 @@
     margin: 0 ($base-size / 2);
     padding: 0;
   }
+
 }

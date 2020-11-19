@@ -6,6 +6,7 @@
   &__wrapper {
     position: relative;
   }
+
 }
 
 .logo {
@@ -22,6 +23,7 @@
     span {
       font-weight: $font-bold;
     }
+
   }
 
   &__subtitle {
@@ -30,4 +32,5 @@
     font-weight: $font-light;
     font-style: italic;
   }
+
 }
