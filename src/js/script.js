@@ -427,7 +427,6 @@
 
     remove(cartProduct) {
       const cart = this;
-      console.log(cartProduct);
 
       const index = cart.products.indexOf(cartProduct);
       cart.products.splice(index, 1);
