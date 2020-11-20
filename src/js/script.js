@@ -73,6 +73,11 @@
     },
     cart: {
       defaultDeliveryFee: 20
+    },
+    db: {
+      url: '//localhost:3131',
+      product: 'product',
+      order: 'order'
     }
   };
 
@@ -383,6 +388,10 @@
         event.preventDefault();
         cart.toggleCart();
       });
+      cart.dom.productList.addEventListener('remove', function (event) {
+        event.preventDefault();
+        cart.remove(event.detail.cartProduct);
+      });
     }
 
     add(menuProduct) {
@@ -409,15 +418,21 @@
       }
       cart.totalPrice = cart.subtotalPrice + cart.deliveryFee;
 
-      console.log(cart.totalNumber, cart.subtotalPrice, cart.totalPrice);
-
       for (let key of cart.renderTotalsKeys) {
         for (let elem of cart.dom[key]) {
-          console.log(cart);
-          console.log(cart[key]);
           elem.innerHTML = cart[key];
         }
       }
+    }
+
+    remove(cartProduct) {
+      const cart = this;
+      console.log(cartProduct);
+
+      const index = cart.products.indexOf(cartProduct);
+      cart.products.splice(index, 1);
+      cartProduct.dom.wrapper.remove();
+      cart.update();
     }
   }
 
@@ -435,6 +450,7 @@
 
       cartProduct.getElements(element);
       cartProduct.initAmountWidget();
+      cartProduct.initActions();
     }
 
     getElements(element) {
@@ -463,19 +479,61 @@
         app.cart.update();
       });
     }
+
+    removeProduct() {
+      const cartProduct = this;
+
+      const event = new CustomEvent('remove', {
+        bubbles: true,
+        detail: {
+          cartProduct: cartProduct
+        }
+      });
+
+      cartProduct.dom.wrapper.dispatchEvent(event);
+      console.log('REMOVE');
+    }
+
+    initActions() {
+      const cartProduct = this;
+
+      cartProduct.dom.edit.addEventListener('click', function (event) {
+        event.preventDefault();
+        console.log('EDIT');
+      });
+      cartProduct.dom.remove.addEventListener('click', function (event) {
+        event.preventDefault();
+        cartProduct.removeProduct();
+      });
+    }
   }
 
   const app = {
     initMenu() {
       const thisApp = this;
       for (let productData in thisApp.data.products) {
-        new Product(productData, thisApp.data.products[productData]);
+        new Product(
+          thisApp.data.products[productData].id,
+          thisApp.data.products[productData]
+        );
       }
     },
 
     initData() {
       const thisApp = this;
-      thisApp.data = dataSource;
+      thisApp.data = {};
+      const url = settings.db.url + '/' + settings.db.product;
+      /* send url request */
+      fetch(url)
+        /* if succeed convert raw json data to readable data by .json parse method */
+        .then((rawResponse) => rawResponse.json())
+        /* execute target ethod on parsedData */
+        .then(function (parsedResponse) {
+          /* save parsedResponse as thisApp.data.products */
+          thisApp.data.products = parsedResponse;
+          thisApp.initMenu();
+        });
+      /* execute initMenu method */
     },
 
     initCart() {
@@ -488,7 +546,6 @@
       const thisApp = this;
 
       thisApp.initData();
-      thisApp.initMenu();
       thisApp.initCart();
     }
   };
