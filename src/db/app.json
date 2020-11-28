@@ -242,11 +242,11 @@
     },
     {
       "id": 5,
-      "date": "2019-01-01",
+      "date": "2020-12-03",
       "hour": "18:00",
-      "table": 2,
-      "repeat": false,
-      "duration": 2,
+      "table": 3,
+      "repeat": "daily",
+      "duration": 3,
       "ppl": 3,
       "starters": ["lemonWater"]
     }
