@@ -10,6 +10,7 @@ export class Booking {
     const booking = this;
 
     booking.render(bookingWrapper);
+    booking.initActions();
     booking.initWidgets();
     booking.getData();
   }
@@ -34,7 +35,43 @@ export class Booking {
       select.widgets.hourPicker.wrapper
     );
     booking.dom.tables = bookingWrapper.querySelectorAll(select.booking.tables);
-    console.log(booking.dom.tables);
+    booking.dom.phone = bookingWrapper.querySelector(select.booking.phoneInput);
+    booking.dom.address = bookingWrapper.querySelector(
+      select.booking.addressInput
+    );
+    booking.dom.bookingButton = bookingWrapper.querySelector(
+      select.booking.bookingButton
+    );
+  }
+
+  initActions() {
+    const booking = this;
+
+    for (let table of booking.dom.tables) {
+      table.addEventListener('click', function (event) {
+        event.preventDefault();
+        booking.choosenTable = this;
+        booking.toggleTable(booking.choosenTable);
+      });
+    }
+
+    booking.dom.bookingButton.addEventListener('click', function (event) {
+      event.preventDefault();
+      booking.confirmBooking();
+    });
+  }
+
+  toggleTable(clickedTable) {
+    const booking = this;
+
+    if (!clickedTable.classList.contains(classNames.booking.tableChoosen)) {
+      for (let table of booking.dom.tables) {
+        table.classList.remove(classNames.booking.tableChoosen);
+      }
+      clickedTable.classList.add(classNames.booking.tableChoosen);
+    } else {
+      clickedTable.classList.remove(classNames.booking.tableChoosen);
+    }
   }
 
   initWidgets() {
@@ -42,12 +79,70 @@ export class Booking {
 
     booking.peopleAmount = new AmountWidget(booking.dom.peopleAmount);
     booking.hoursAmount = new AmountWidget(booking.dom.hoursAmount);
-    booking.datePicker = new DatePicker(booking.dom.datePicker);
-    booking.hourPicker = new HourPicker(booking.dom.hourPicker);
+    booking.datePicker = new DatePicker(
+      booking.dom.datePicker,
+      booking.dom.tables
+    );
+    booking.hourPicker = new HourPicker(
+      booking.dom.hourPicker,
+      booking.dom.tables
+    );
     booking.dom.wrapper.addEventListener('updated', function (event) {
       event.preventDefault();
       booking.updateDOM();
     });
+  }
+
+  confirmBooking() {
+    const booking = this;
+
+    if (!booking.hasOwnProperty('choosenTable')) {
+      booking.showAlert('Mamma Mia !', 'Which table do You want to book?', 500);
+      return;
+    }
+
+    const url = settings.db.url + '/' + settings.db.booking;
+
+    const startersArray = [];
+    const starters = booking.dom.wrapper.querySelectorAll(
+      'input[name="starter"]'
+    );
+    for (const starter of starters) {
+      if (starter.checked == true) {
+        startersArray.push(starter.value);
+      }
+    }
+
+    const payload = {
+      date: booking.datePicker.value,
+      hour: booking.hourPicker.value,
+      table: parseInt(booking.choosenTable.getAttribute('data-table')),
+      repeat: false,
+      duration: booking.hoursAmount.value,
+      ppl: booking.peopleAmount.value,
+      starters: startersArray,
+      phone: booking.dom.phone.value,
+      address: booking.dom.address.value
+    };
+
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    };
+
+    fetch(url, options)
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (parsedResponse) {
+        console.log(parsedResponse);
+      });
+
+    booking.getData();
+    booking.updateDOM();
   }
 
   getData() {
@@ -100,8 +195,6 @@ export class Booking {
       .then(function ([bookings, eventsCurrent, eventsRepeat]) {
         booking.parseData(bookings, eventsCurrent, eventsRepeat);
       });
-
-    console.log(params);
   }
 
   parseData(bookings, eventsCurrent, eventsRepeat) {
@@ -109,7 +202,7 @@ export class Booking {
 
     booking.booked = {};
     for (const reservation of eventsCurrent) {
-      console.log(reservation);
+      // console.log(reservation);
       booking.makeBooked(
         reservation.date,
         reservation.hour,
@@ -129,7 +222,7 @@ export class Booking {
     }
 
     for (const reservation of eventsRepeat) {
-      console.log(reservation);
+      // console.log(reservation);
       for (let i = 0; i < 14; i++) {
         const newDate = utils.addDays(reservation.date, i);
         const newDateStr = utils.dateToStr(newDate);
@@ -177,7 +270,44 @@ export class Booking {
         table.classList.add(classNames.booking.tableBooked);
       } else {
         table.classList.remove(classNames.booking.tableBooked);
+        table.classList.remove(classNames.booking.tableChoosen);
       }
     }
+  }
+
+  showAlert(titleText, subtitleText, topPixels) {
+    if (document.getElementById('alertBox')) {
+      return;
+    }
+
+    let allertObj = document
+      .querySelector('.header__wrapper')
+      .appendChild(document.createElement('div'));
+    allertObj.id = 'alertBox';
+    allertObj.style.top = topPixels + 'px';
+
+    let imageDiv = allertObj.appendChild(document.createElement('div'));
+    let descriptionDiv = allertObj.appendChild(document.createElement('div'));
+
+    let image = imageDiv.appendChild(document.createElement('img'));
+    image.src = 'images/pizzaman.png';
+    image.classList.add('pizzaman');
+
+    let msgTitle = descriptionDiv.appendChild(document.createElement('h1'));
+    msgTitle.classList.add('message_title');
+    msgTitle.innerText = titleText;
+
+    let msgSubtitle = descriptionDiv.appendChild(document.createElement('h2'));
+    msgSubtitle.classList.add('message_subtitle');
+    msgSubtitle.innerText = subtitleText;
+
+    let button = descriptionDiv.appendChild(document.createElement('button'));
+    button.id = 'closeButton';
+    button.classList.add('btn-secondary');
+    button.innerText = 'Got it !';
+
+    button.addEventListener('click', function () {
+      document.querySelector('.header__wrapper').removeChild(allertObj);
+    });
   }
 }

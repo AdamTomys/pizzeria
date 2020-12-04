@@ -1,11 +1,13 @@
 import { BaseWidget } from './BaseWidget.js';
-import { settings, select } from '../settings.js';
+import { settings, classNames, select } from '../settings.js';
 import { utils } from '../utils.js';
 
 export class HourPicker extends BaseWidget {
-  constructor(wrapper) {
+  constructor(wrapper, allTables) {
     super(wrapper, settings.hours.open);
     const hourPickerWidget = this;
+
+    hourPickerWidget.tables = allTables;
 
     hourPickerWidget.dom.input = hourPickerWidget.dom.wrapper.querySelector(
       select.widgets.hourPicker.input
@@ -23,6 +25,9 @@ export class HourPicker extends BaseWidget {
     rangeSlider.create(hourPickerWidget.dom.input);
 
     hourPickerWidget.dom.input.addEventListener('input', function () {
+      for (let table of hourPickerWidget.tables) {
+        table.classList.remove(classNames.booking.tableChoosen);
+      }
       hourPickerWidget.value = hourPickerWidget.dom.input.value;
     });
   }

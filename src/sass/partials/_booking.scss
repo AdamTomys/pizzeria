@@ -173,6 +173,10 @@
       }
 
     }
+    
+    &.choosen {
+      border: 3px solid green;
+    }
   }
 
   [data-table="1"] {

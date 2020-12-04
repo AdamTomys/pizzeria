@@ -96,7 +96,7 @@ export class Cart {
     cart.dom.form.addEventListener('submit', function (event) {
       event.preventDefault();
       if (cart.products.length > 0) {
-        // cart.sendOrder();
+        cart.sendOrder();
       } else {
         cart.showEmptyBasketAlert();
       }

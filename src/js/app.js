@@ -111,15 +111,15 @@ const app = {
 app.init();
 
 // eslint-disable-next-line no-unused-vars
-function validateRequirements(textbox) {
-  if (textbox.value === '') {
-    textbox.style.background = '#ff6b6b';
-    textbox.setCustomValidity('Your phone number is required');
-  } else if (textbox.validity.typeMismatch) {
-    textbox.setCustomValidity('not match');
-  } else {
-    textbox.setCustomValidity('');
-  }
+// function validateRequirements(textbox) {
+//   if (textbox.value === '') {
+//     textbox.style.background = '#ff6b6b';
+//     textbox.setCustomValidity('Your phone number is required');
+//   } else if (textbox.validity.typeMismatch) {
+//     textbox.setCustomValidity('not match');
+//   } else {
+//     textbox.setCustomValidity('');
+//   }
 
-  return true;
-}
+//   return true;
+// }

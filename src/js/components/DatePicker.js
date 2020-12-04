@@ -1,11 +1,13 @@
 import { BaseWidget } from './BaseWidget.js';
 import { utils } from '../utils.js';
-import { select, settings } from '../settings.js';
+import { select, classNames, settings } from '../settings.js';
 
 export class DatePicker extends BaseWidget {
-  constructor(wrapper) {
+  constructor(wrapper, allTables) {
     super(wrapper, utils.dateToStr(new Date()));
     const datePickerWidget = this;
+
+    datePickerWidget.tables = allTables;
 
     datePickerWidget.dom.input = datePickerWidget.dom.wrapper.querySelector(
       select.widgets.datePicker.input
@@ -36,6 +38,9 @@ export class DatePicker extends BaseWidget {
         firstDayOfWeek: 1
       },
       onChange: function (dateStr) {
+        for (let table of datePickerWidget.tables) {
+          table.classList.remove(classNames.booking.tableChoosen);
+        }
         datePickerWidget.value = dateStr;
       }
     });

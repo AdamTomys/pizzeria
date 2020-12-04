@@ -1,0 +1,59 @@
+.main .container {
+  padding: 5px 40px;
+  margin-top: 45px;
+  border-radius: 5px;
+  background: white;
+}
+
+.first-row {
+  display: flex;
+}
+
+.order-image,
+.booking-image {
+  background-image: url("../images/homePage/pizza-1.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 150px;
+  width: 400px;
+  border-radius: 5px;
+  margin: 65px 3px 3px;
+}
+
+.booking-image {
+  background-image: url("../images/homePage/pizza-2.jpg");
+}
+
+.second-row {
+  background: $color-main;
+  height: 150px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  color: white;
+  margin: 0;
+}
+
+.opening {
+  color: white;
+  margin: 0;
+}
+
+.order-image a,
+.booking-image a {
+  color: white;
+  text-decoration: none;
+  font-size: 25px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
