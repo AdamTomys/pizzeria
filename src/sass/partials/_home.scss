@@ -1,59 +1,162 @@
-.main .container {
+.content-container {
   padding: 5px 40px;
-  margin-top: 45px;
+  margin: 45px auto;
   border-radius: 5px;
   background: white;
+  width: 700px;
 }
 
-.first-row {
-  display: flex;
+.main {
+  .first-row {
+    display: flex;
+  
+    .order-image,
+    .booking-image {
+      background-image: url("../images/homePage/pizza-1.jpg");
+      background-position: center;
+      background-size: cover;
+      height: 150px;
+      width: 400px;
+      border-radius: 5px;
+      margin: 65px 3px 3px;
+      
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 25px;
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Oswald", sans-serif;
+      }
+    }
+  
+    .booking-image {
+      background-image: url("../images/homePage/pizza-2.jpg");
+    }
+  }
+  
+  .second-row {
+    background: $color-main;
+    height: 150px;
+    border-radius: 5px;
+    margin: 3px 3px 80px 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    h1 {
+      color: white;
+      margin: 0;
+      font-family: "Oswald", sans-serif;
+      font-size: 28px;
+      font-weight: 500;
+    }
+    
+    .opening {
+      color: white;
+      margin: 0;
+    }
+  }
+  
 }
 
-.order-image,
-.booking-image {
-  background-image: url("../images/homePage/pizza-1.jpg");
-  background-position: center;
-  background-size: cover;
-  height: 150px;
-  width: 400px;
-  border-radius: 5px;
-  margin: 65px 3px 3px;
+.slider {
+  .carousel {
+    padding: 0 5px;
+  }
+  
+  .carousel-indicators {
+    top: 105%;
+    
+    li {
+      background: lightgray;
+      border: 1px solid lightgray;
+      margin: 0 10px;
+      height: 12px;
+      width: 12px;
+      
+      &.active {
+        background: black;
+        margin: 0 10px;
+        height: 12px;
+        width: 12px;
+        border: 1px solid black;
+      }
+    }
+  }
+  
+  .carousel-inner {
+    .item {      
+      img {
+        line-height: 1;
+        height: 200px;
+        width: 200px;
+        border-radius: 5px;
+        object-fit: cover;
+      }
+    }
+  }
 }
 
-.booking-image {
-  background-image: url("../images/homePage/pizza-2.jpg");
-}
-
-.second-row {
-  background: $color-main;
-  height: 150px;
+.gallery {
   width: 100%;
-  border-radius: 5px;
-  margin: 3px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
-h1 {
-  color: white;
-  margin: 0;
-}
-
-.opening {
-  color: white;
-  margin: 0;
-}
-
-.order-image a,
-.booking-image a {
-  color: white;
-  text-decoration: none;
-  font-size: 25px;
-  height: 100%;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  .row-gallery-images {
+    display: flex;
+    margin-top: 80px;
+  
+    .box {
+      position: relative;
+      height: 200px;
+      width: 33.33%;
+      padding: 5px;
+    
+      .overlay {
+        background: black;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        border-radius: 5px;
+        
+        img {
+          width: 100%;
+          height: 100%;
+          border-radius: 5px;
+          object-fit: cover;
+        }
+      }
+    
+      &:hover img {
+        opacity: 0.5;
+        transition: all 0.2s;
+      }
+    
+      &:hover .fa-code-branch,
+      &:hover .fa-heart {
+        display: inline;
+        transition: all 0.2s;
+      }
+    
+      .fa-heart,
+      .fa-code-branch {
+        color: red;
+        font-size: 27px;
+        margin: 0 5px;
+        position: absolute;
+        display: none;
+        top: 50%;
+        left: 40%;
+        transform: translate(-50%, -50%);
+      }
+    
+      .fa-code-branch {
+        color: white;
+        left: 60%;
+      }
+    }
+  }
 }
