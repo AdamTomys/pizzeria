@@ -67,6 +67,7 @@
 .slider {
   .carousel {
     padding: 0 5px;
+    margin-bottom: 80px;
   }
   
   .carousel-indicators {
@@ -90,13 +91,35 @@
   }
   
   .carousel-inner {
-    .item {      
+    .item {        
       img {
         line-height: 1;
         height: 200px;
         width: 200px;
         border-radius: 5px;
         object-fit: cover;
+      }
+      
+      .description {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 40%;
+        
+        h2 {
+          font-size: 16px;
+          font-weight: 600;
+        }
+        
+        .desc-content {
+          font-size: 14px;
+          font-family: $font-text;
+          font-weight: $font-light;
+        }
+        
+        .signature {
+          font-style: italic;
+        }
       }
     }
   }
@@ -107,7 +130,6 @@
 
   .row-gallery-images {
     display: flex;
-    margin-top: 80px;
   
     .box {
       position: relative;
@@ -158,5 +180,34 @@
         left: 60%;
       }
     }
+  }
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  margin: 60px 0 30px;
+  
+  i {
+    margin: 0 10px;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  
+  i:hover {
+    transition: all 0.2s;
+    transform: scale(1.2, 1.2);
+  }
+  
+  .fa-instagram {
+    color: purple;
+  }
+  
+  .fa-facebook-square {
+    color: rgb(10, 92, 185);
+  }
+  
+  .fa-youtube {
+    color: rgb(226, 13, 13);
   }
 }

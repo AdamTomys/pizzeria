@@ -55,6 +55,7 @@
     "prettier": "^2.1.2",
     "stylelint": "^13.8.0",
     "stylelint-config-standard": "^20.0.0",
-    "stylelint-scss": "^3.5.4"
+    "stylelint-scss": "^3.5.4",
+    "stylelint-statement-max-nesting-depth": "^2.0.1"
   }
 }
