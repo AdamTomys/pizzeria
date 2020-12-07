@@ -9,6 +9,186 @@
       "images": ["<img class=\"active\" src=\"images/doughnut.svg\">"]
     },
     {
+      "id": "pasta",
+      "name": "Nataliana's Supreme Pasta",
+      "price": 5,
+      "description": "Try our home made pastas.",
+      "images": [
+        "<img class=\"active\" src=\"images/pasta/plate.png\">",
+        "<img class=\"sauce-tomato\" src=\"images/pasta/tomato-sauce.png\">",
+        "<img class=\"sauce-cream\" src=\"images/pasta/cream-sauce.png\">",
+        "<img class=\"pasta-spaghetti\" src=\"images/pasta/spaghetti.png\">",
+        "<img class=\"pasta-penne\" src=\"images/pasta/penne.png\">",
+        "<img class=\"ingredients-mozarella\" src=\"images/pasta/mozarella.png\">",
+        "<img class=\"ingredients-tomato\" src=\"images/pasta/tomato.png\">",
+        "<img class=\"ingredients-garlic\" src=\"images/pasta/garlic.png\">",
+        "<img class=\"ingredients-jalapeno\" src=\"images/pasta/jalapeno.png\">",
+        "<img class=\"ingredients-shrimps\" src=\"images/pasta/shrimps.png\">",
+        "<img class=\"ingredients-chicken\" src=\"images/pasta/chicken.png\">",
+        "<img class=\"ingredients-basil\" src=\"images/pasta/basil.png\">",
+        "<img class=\"ingredients-spinach\" src=\"images/pasta/spinach.png\">"
+      ],
+      "params": {
+        "sauce": {
+          "label": "Sauce",
+          "type": "radios",
+          "options": {
+            "tomato": {
+              "label": "Tomato",
+              "price": 0,
+              "default": true
+            },
+            "cream": {
+              "label": "Cream",
+              "price": 2
+            }
+          }
+        },
+        "pasta": {
+          "label": "Pasta",
+          "type": "radios",
+          "options": {
+            "spaghetti": {
+              "label": "Spaghetti",
+              "price": 0,
+              "default": true
+            },
+            "penne": {
+              "label": "Penne",
+              "price": 2
+            }
+          }
+        },
+        "ingredients": {
+          "label": "Ingredients",
+          "type": "checkboxes",
+          "options": {
+            "mozarella": {
+              "label": "Mozarella",
+              "price": 5,
+              "default": false
+            },
+            "tomato": {
+              "label": "Tomatos",
+              "price": 3,
+              "default": false
+            },
+            "garlic": {
+              "label": "Garlic",
+              "price": 2,
+              "default": false
+            },
+            "jalapeno": {
+              "label": "Jalapeno",
+              "price": 4,
+              "default": false
+            },
+            "shrimps": {
+              "label": "Shrimps",
+              "price": 7,
+              "default": false
+            },
+            "chicken": {
+              "label": "Chicken",
+              "price": 4,
+              "default": false
+            },
+            "basil": {
+              "label": "Basil",
+              "price": 3,
+              "default": false
+            },
+            "spinach": {
+              "label": "Spinach",
+              "price": 7,
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "iceCream",
+      "name": "Nataliana's home made ice creams.",
+      "price": 2,
+      "description": "Unique tastes, You have to try!",
+      "images": [
+        "<img class=\"cone-standard active\" src=\"images/ice-cream/white-cone.png\">",
+        "<img class=\"cone-black\" src=\"images/ice-cream/black-cone.png\">",
+        "<img class=\"taste-pistachio\" src=\"images/ice-cream/pistachio.png\">",
+        "<img class=\"taste-chocolate\" src=\"images/ice-cream/chocolate.png\">",
+        "<img class=\"taste-coconut\" src=\"images/ice-cream/coconut.png\">",
+        "<img class=\"taste-strawberry\" src=\"images/ice-cream/strawberry.png\">",
+        "<img class=\"taste-blueberry\" src=\"images/ice-cream/blueberry.png\">",
+        "<img class=\"taste-mango\" src=\"images/ice-cream/mango.png\">",
+        "<img class=\"taste-kiwi\" src=\"images/ice-cream/kiwi.png\">",
+        "<img class=\"taste-lemon\" src=\"images/ice-cream/lemon.png\">"
+      ],
+      "params": {
+        "cone": {
+          "label": "Cone",
+          "type": "radios",
+          "options": {
+            "standard": {
+              "label": "Standard",
+              "price": 0,
+              "default": true
+            },
+            "black": {
+              "label": "Black",
+              "price": 2
+            }
+          }
+        },
+        "taste": {
+          "label": "Tastes",
+          "type": "checkboxes",
+          "options": {
+            "pistachio": {
+              "label": "Pistachio",
+              "price": 3,
+              "default": false
+            },
+            "kiwi": {
+              "label": "Kiwi",
+              "price": 3,
+              "default": false
+            },
+            "lemon": {
+              "label": "Lemon",
+              "price": 3,
+              "default": false
+            },
+            "chocolate": {
+              "label": "Chocolate",
+              "price": 3,
+              "default": false
+            },
+            "blueberry": {
+              "label": "Blueberry",
+              "price": 3,
+              "default": false
+            },
+            "strawberry": {
+              "label": "Strawberry",
+              "price": 3,
+              "default": false
+            },
+            "mango": {
+              "label": "Mango",
+              "price": 3,
+              "default": false
+            },
+            "coconut": {
+              "label": "Coconut",
+              "price": 3,
+              "default": false
+            }
+          }
+        }
+      }
+    },
+    {
       "id": "breakfast",
       "class": "small",
       "name": "Zia Giulia's Breakfast",
