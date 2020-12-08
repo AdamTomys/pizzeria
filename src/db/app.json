@@ -9,6 +9,20 @@
       "images": ["<img class=\"active\" src=\"images/doughnut.svg\">"]
     },
     {
+      "id": "starter",
+      "name": "Nataliana's Fresh Bruschetta",
+      "price": 8,
+      "description": "Fresh, crispy bruschetta with home garden's tomatos.",
+      "images": ["<img class=\"active\" src=\"images/bruschetta.png\">"]
+    },
+    {
+      "id": "dessert",
+      "name": "Nataliana's Delicious Tiramisu",
+      "price": 12,
+      "description": "Soft as cloud, taste like heaven.",
+      "images": ["<img class=\"active\" src=\"images/tiramisu.png\">"]
+    },
+    {
       "id": "pasta",
       "name": "Nataliana's Supreme Pasta",
       "price": 5,
