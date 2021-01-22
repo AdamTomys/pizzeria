@@ -22,7 +22,7 @@ const app = {
     fetch(url)
       /* if succeed convert raw json data to readable data by .json parse method */
       .then((rawResponse) => rawResponse.json())
-      /* execute target ethod on parsedData */
+      /* execute target method on parsedData */
       .then(function (parsedResponse) {
         /* save parsedResponse as thisApp.data.products */
         thisApp.data.products = parsedResponse;
